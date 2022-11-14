@@ -17,10 +17,16 @@ export default class PopoverWidget {
 
   get markup() {
     return `
-        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" id="popover-button"
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" id="popover-button" data-bs-placement="top"
             data-bs-title="${this.title}" data-bs-content="${this.content}">
             ${this.text}
         </button>
+        <div class="popover bs-popover-auto fade show" role="tooltip" id="popover844900" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(255px, 1370px);" 
+          data-popper-placement="top">
+          <div class="popover-arrow" style="position: absolute; left: 0px; transform: translate(47px, 0px);"></div>
+          <h3 class="popover-header">${this.title}</h3>
+          <div class="popover-body">${this.content}</div>
+        </div>
     `;
   }
 
