@@ -21,7 +21,7 @@ export default class PopoverWidget {
             data-bs-title="${this.title}" data-bs-content="${this.content}">
             ${this.text}
         </button>
-        <div class="popover bs-popover-auto fade show" role="tooltip" id="popover844900" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(255px, 1370px);" 
+        <div class="popover hidden" role="tooltip" id="popover844900" style="position: absolute;" 
           data-popper-placement="top">
           <div class="popover-arrow" style="position: absolute; left: 0px; transform: translate(47px, 0px);"></div>
           <h3 class="popover-header">${this.title}</h3>
