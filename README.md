@@ -1,5 +1,7 @@
 # Домашнее задание к занятию "Работа с HTML-формами"
 
+[![Build status](https://ci.appveyor.com/api/projects/status/mj2u09i779wqrr6i/branch/main?svg=true)](https://ci.appveyor.com/project/Malins062/ahjs-forms/branch/main)
+
 Правила сдачи задания:
 
 1. **Важно**: в рамках этого ДЗ вы можете использовать любой пакетный менеджер
@@ -25,4 +27,4 @@
 
 Не забудьте написать авто-тест на взаимодействие с DOM на базе Puppeteer или JSDOM (на ваш выбор).
 
-**Подсказка**: страница, на которой можно "подглядеть" реализацию: https://getbootstrap.com/docs/4.3/components/popovers/. Но мы пока не проходили `translate`, `translate3d`, поэтому делайте позиционирование в px.
+**Подсказка**: страница, на которой можно "подглядеть" реализацию: "https://getbootstrap.com/docs/4.3/components/popovers/". Но мы пока не проходили `translate`, `translate3d`, поэтому делайте позиционирование в px.
