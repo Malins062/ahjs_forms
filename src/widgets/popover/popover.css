@@ -1,3 +1,8 @@
 .hidden {
     display: none;
   }
+
+  .popover {
+    position: absolute;
+  }
+

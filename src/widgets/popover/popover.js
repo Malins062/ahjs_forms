@@ -17,11 +17,11 @@ export default class PopoverWidget {
 
   get markup() {
     return `
-        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" id="popover-button" data-bs-placement="top"
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover-hint" id="popover-button" data-bs-placement="top"
             data-bs-title="${this.title}" data-bs-content="${this.content}">
             ${this.text}
         </button>
-        <div class="popover hidden" role="tooltip" id="popover844900" style="position: absolute;" 
+        <div class="popover hidden" role="tooltip" id="popover-hint" 
           data-popper-placement="top">
           <div class="popover-arrow" style="position: absolute; left: 0px; transform: translate(47px, 0px);"></div>
           <h3 class="popover-header">${this.title}</h3>
@@ -33,6 +33,10 @@ export default class PopoverWidget {
   static get buttonSelector() {
     return '[id=popover-button]';
   }
+
+  static get hintSelector() {
+    return '[id=popover-hint]';
+  }
   
   bindToDOM() {
     this.parentEl.innerHTML = this.markup;
@@ -41,40 +45,21 @@ export default class PopoverWidget {
     button.addEventListener('click', evt => this.onClick(evt));
   }
 
+  toggleHint() {
+    const popoverHint = document.querySelector(PopoverWidget.hintSelector),
+      popoverButton = document.querySelector(PopoverWidget.buttonSelector);
+    popoverHint.classList.toggle('hidden');
+
+    const coordsPopoverHint = popoverHint.getBoundingClientRect(),
+      coordsPopoverButton = popoverButton.getBoundingClientRect();
+
+    // console.log(coordsPopoverButton, coordsPopoverHint);
+    popoverHint.style.top = coordsPopoverButton.top - coordsPopoverHint.height + "px";
+    popoverHint.style.left = coordsPopoverButton.left + (coordsPopoverButton.width / 2) - (coordsPopoverHint.width / 2) + "px";
+  }
+
   onClick(evt) {
     evt.preventDefault();
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-    // const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-
-    console.log(popoverTriggerList)
-
-    // const inputEl = this.parentEl.querySelector(CardNumberWidget.inputSelector),
-    //   validCard = isValidCard(inputEl.value);
-    // // console.log(validCard);
-    // if (!validCard) {
-    //   inputEl.classList.add('is-invalid');
-    //   inputEl.classList.remove('is-valid');
-    //   if (this.showImages && this.lastActiveCardEl !== undefined) {
-    //       this.lastActiveCardEl.classList.add('disabled');
-    //   } 
-
-
-    // } else {
-    //   const feedbackEl = this.parentEl.querySelector(CardNumberWidget.validFeedbackSelector);
-    //   feedbackEl.innerHTML = `Карта идентифицирована - ${validCard[1]}`;
-
-    //   inputEl.classList.remove('is-invalid');
-    //   inputEl.classList.add('is-valid');
-
-    //   if (this.showImages) {
-    //     if (this.lastActiveCardEl !== undefined) {
-    //       this.lastActiveCardEl.classList.add('disabled');
-    //     } 
-    //     const cardEl = this.parentEl.querySelector(`.${validCard[0]}`);
-    //     // console.log(validCard, cardEl);
-    //     cardEl.classList.remove('disabled');
-    //     this.lastActiveCardEl = cardEl;  
-    //   }
-    // }
+    this.toggleHint();
   }
 }
