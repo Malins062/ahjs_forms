@@ -38,7 +38,7 @@ describe('Popover widget form test', () => {
     await page.goto(baseUrl);
 
     await page.waitForSelector('#widget-container');
-    const button = await page.$('#button-popover');
+    const button = await page.$('#popover-button');
     await button.click();
 
     await page.waitForSelector('.popover');
