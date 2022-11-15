@@ -3,7 +3,7 @@ import { fork } from 'child_process';
 
 jest.setTimeout(30000);
 
-describe('Card number widget form test', () => {
+describe('Popover widget form test', () => {
   let browser = null;
   let page = null;
   let server = null;
@@ -34,35 +34,16 @@ describe('Card number widget form test', () => {
     server.kill();
   });
 
-  test('Valid card number', async () => {
+  test('Show popover display or none hint', async () => {
     await page.goto(baseUrl);
 
-    await page.waitForSelector('.cardnumber-form-widget');
-    const form = await page.$('.cardnumber-form-widget');
-    console.log(page);
-    console.log(form);
-
-    const input = await form.$('.input');
-    console.log(input);
-    await input.type('2200240768512994');    
-
-    const button = await form.$('.submit');
+    await page.waitForSelector('#widget-container');
+    const button = await page.$('#button-popover');
     await button.click();
 
-    await page.waitForSelector('.input.is-valid');
-  });
+    await page.waitForSelector('.popover');
 
-  test('Invalid card number', async () => {
-    await page.goto(baseUrl);
-
-    await page.waitForSelector('.cardnumber-form-widget');
-    const form = await page.$('.cardnumber-form-widget');
-
-    const input = await form.$('.input');
-    await input.type('01253');
-
-    const button = await form.$('.submit');
     await button.click();
-    await page.waitForSelector('.input.is-invalid');
+    await page.waitForSelector('.popover.hidden');
   });
 });
